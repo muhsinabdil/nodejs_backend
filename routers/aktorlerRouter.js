@@ -1,10 +1,8 @@
 const router =require("express").Router();
 
+module.exports = router;
+
 let data=require("../data.js");
-
-
-
-
 
 
 router.get("/", function (req, res) {
@@ -38,3 +36,5 @@ data.push(yeniAktor);
 res.status(201).json(yeniAktor);
 
 });
+
+

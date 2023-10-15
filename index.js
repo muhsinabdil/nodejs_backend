@@ -1,12 +1,19 @@
 
 const express = require("express");
 const server = express();
-
+const loggert =require("./middlewares/logger");
+const aktorlerRouter=require("./routers/aktorlerRouter")
 const host = '127.0.0.1'
 const port = 3333;
 
 
-const aktorlerRouter=require("./routers/aktorlerRouter")
+
+
+
+server.use(express.json);
+
+server.use(loggert);
+server.use("/aktorler", aktorlerRouter);
 
 server.get("/", function (req, res) {
 
@@ -14,11 +21,10 @@ server.get("/", function (req, res) {
 
 });
 
-server.use("/aktorler", aktorlerRouter);
 
 server.listen(port, host, function () {
 
-    console.log(`http://${host} adresi dinleniyor`);
+    console.log(`http://${host}:${port} adresi dinleniyor`);
 
 });
 
