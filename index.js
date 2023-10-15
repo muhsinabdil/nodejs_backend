@@ -1,18 +1,16 @@
 
 const express = require("express");
-const server = express();
+const aktorlerRouter=require("./routers/aktorlerRouter");
 const loggert =require("./middlewares/logger");
-const aktorlerRouter=require("./routers/aktorlerRouter")
 const host = '127.0.0.1'
 const port = 3333;
 
 
 
 
-
-server.use(express.json);
-
-server.use(loggert);
+const server = express();
+server.use(express.json());//! 
+server.use(loggert);  //! routerdan önce olsunki onlarada uygulansın
 server.use("/aktorler", aktorlerRouter);
 
 server.get("/", function (req, res) {
